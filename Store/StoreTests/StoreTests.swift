@@ -17,6 +17,7 @@ final class StoreTests: XCTestCase {
 
     override func tearDownWithError() throws { }
 
+
     func testBaseline() throws {
         XCTAssertEqual("0.1", Store().version)
         XCTAssertEqual("Hello world", Store().helloWorld())
@@ -65,5 +66,13 @@ Granols Bars (Box, 8ct): $4.99
 TOTAL: $7.97
 """
         XCTAssertEqual(expectedReceipt, receipt.output())
+    }
+    
+    func testSingleItem(){
+        register.scan(Item(name: "Beans", priceEach: 499))
+//        print("Subtotal after one item: \(register.subtotal())")
+//        let receipt = register.total()
+//        print(receipt.output())
+        XCTAssertEqual(499, register.subtotal())
     }
 }
